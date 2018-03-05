@@ -3,8 +3,9 @@
 -- Course: ICS2O/3C
 -- This program displays a beetleship moving across the screen as well as another 
 -- object moving in a different direction 
+-------------------------------------------------------------------------------------
 
-print ("***Testing beetleship!")
+-- Your code here
 
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
@@ -29,9 +30,46 @@ beetleship.y = display.contentHeight/3
 -- Input: this function accepts an event listener
 -- Output: none 
 -- Description: This function adds the scroll speed to the x-value of the ship
-local function MovieShip(event)
+local function MoveShip(event)
 	-- add the scroll speed to the x-value of the ship
 	beetleship.x = beetleship.x + scrollSpeed
 	-- change the transparency of the ship everytime it moves so that it fades out 
-	beetleship.alpha = beetleship.aplha + 0.01
+	beetleship.alpha = beetleship.alpha + 0.01
 end 
+
+-- MoveShip will be called over and over again
+Runtime:addEventListener("enterFrame", MoveShip)
+
+-- global variables
+scrollSpeed2 = 4
+
+-- character image with width and height
+local rocketship = display.newImageRect("Images/rocketship.png", 200, 200)
+
+-- set the initial x and y position of rocketship
+rocketship.x = 1000
+rocketship.y = display.contentHeight/2
+
+-- make the rocketship visible
+rocketship.alpha = 1
+
+-- change the direction of the rocketship
+rocketship:scale(-1,1)
+
+-- Function: MovieShip
+-- Input: this function accepts an event listener
+-- Output: none 
+-- Description: This function adds the scroll speed to the x-value of the ship
+local function MoveRocket(event)
+	-- add the scroll speed to the x-value of the ship
+	rocketship.x = rocketship.x - scrollSpeed2
+
+	-- change the transparency of the ship everytime it moves so that it fades out 
+	rocketship.alpha = rocketship.alpha - 0.0001
+
+	-- make the rocketship grow
+	rocketship = rocketship - 0.001
+end 
+
+-- MoveShip will be called over and over again
+Runtime:addEventListener("enterFrame", MoveRocket)
