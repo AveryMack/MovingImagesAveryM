@@ -65,11 +65,13 @@ local function MoveRocket(event)
 	rocketship.x = rocketship.x - scrollSpeed2
 
 	-- change the transparency of the ship everytime it moves so that it fades out 
-	rocketship.alpha = rocketship.alpha - 0.0001
-
-	-- make the rocketship grow
-	rocketship = rocketship - 0.001
+	rocketship.alpha = rocketship.alpha - 0.00001
 end 
 
 -- MoveShip will be called over and over again
 Runtime:addEventListener("enterFrame", MoveRocket)
+
+
+
+
+
